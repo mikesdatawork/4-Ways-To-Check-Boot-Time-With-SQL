@@ -6,9 +6,6 @@
 ![Check Boot Time With SQL]( https://mikesdatawork.files.wordpress.com/2017/11/image0012.png "SQL Boot Time")
 
 
-
-
-
 ## Contents    
 - [About Process](##About-Process)  
 - [SQL Logic](#SQL-Logic)  
@@ -26,7 +23,14 @@
 use master;
 set nocount on
  
-declare @last_boot table ([os_boot] datetime, [first_session] datetime, [default_trace_start] datetime, [tempdb_created] datetime)
+declare 
+  @last_boot table 
+  (
+      [os_boot]             datetime
+    , [first_session]       datetime
+    , [default_trace_start] datetime
+    , [tempdb_created]      datetime
+   )
 insert into @last_boot
 select
     (select sqlserver_start_time from sys.dm_os_sys_info)
